@@ -20,8 +20,12 @@ dbConnection();
 // Rutas
 app.use('/api/login', require('./Routers/auth'));
 app.use('/api/usuarios', require('./Routers/usuarioRouter'));
+app.use('/api/hospitales', require('./Routers/hospitalRouter'));
+app.use('/api/medicos', require('./Routers/medicosRouter'));
+app.use('/api/todo', require('./Routers/busquedas'));
+app.use('/api/upload', require('./Routers/uploads'));
 
-//Pxds4dqzJWNjNjNb - pass
+//adminOscar - pass
 
 app.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en el puerto: ' + process.env.PORT);
