@@ -70,7 +70,7 @@ const googleSingIn = async( req, res = response ) => {
         // Guardar en DB
         await usuario.save;
         // Generar el token
-        const token = await generarJWT( usuarioDB.id );
+        const token = await generarJWT( usuario.id );
 
         res.json({
             ok: true,
@@ -87,8 +87,20 @@ const googleSingIn = async( req, res = response ) => {
         });
     }
 }
+
+const renewToken = async(req, res = response ) => {
+    const uid = req.uid;
+
+    // Generar el TOKEN JWD
+    const token = await generarJWT( uid );
+    res.json({
+        ok: true,
+        token
+    })
+}
  
 module.exports = {
     login,
-    googleSingIn
+    googleSingIn,
+    renewToken
 }
