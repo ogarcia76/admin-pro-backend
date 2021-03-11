@@ -5,14 +5,14 @@
 
 const { Router } = require('express');
 const { check } = require('express-validator');
-const { getMedicos, creartMedico, actualizarMedico, borrarMedico } = require('../controllers/medicosController');
+const { getMedicos, creartMedico, actualizarMedico, borrarMedico, getMedicoById } = require('../controllers/medicosController');
 
 const { validarCampos } = require('../middlewares/validar-campos')
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
-router.get( '/', getMedicos );
+router.get( '/', validarJWT, getMedicos );
 
 router.post( '/',
  [ 
@@ -32,6 +32,8 @@ router.post( '/',
   ], 
   actualizarMedico );
 
-  router.delete( '/:id', borrarMedico );
+  router.delete( '/:id', validarJWT, borrarMedico );
+
+  router.get( '/:id', validarJWT, getMedicoById );
 
 module.exports = router;
